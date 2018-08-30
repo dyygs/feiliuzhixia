@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dy.mapper.CityMapper">
+    <resultMap id="BaseResultMap" type="com.dy.bean.City">
+        <id property="id" column="id"/>
+        <result column="city_id" property="cityId"/>
+        <result column="city_name" property="cityName"/>
+        <result column="province_id" property="provinceId"/>
+    </resultMap>
+    <select id="getCitysByProvinceName" resultMap="BaseResultMap" parameterType="string">
+        select c.`city_id`,c.`city_name`,c.`province_id`,c.`id` from city c, province p
+        where c.`province_id`= p.`province_id` and p.`province_name`= #{provinceName} and c.`city_name` != '省直辖县级行政区划';
+    </select>
+</mapper>
