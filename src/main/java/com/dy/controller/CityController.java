@@ -21,12 +21,11 @@ public class CityController {
     @Autowired
     CityService cityService;
 
-
+//    @CrossOrigin(origins = "*", maxAge = 3600)
     @RequestMapping(value = "/getCity", method = RequestMethod.GET)
     public List<City> getCitysByProvinceName(String provinceName) {
         logger.info("开始查询{}", provinceName);
         List<City> list = cityService.getCitysByProvinceName(provinceName);
-        logger.info("查询结果{}", list);
         return list;
     }
 }
