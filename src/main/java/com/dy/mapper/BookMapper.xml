@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dy.mapper.BookMapper">
+    <resultMap id="BaseResultMap" type="com.dy.bean.Book">
+        <id property="id" column="id"/>
+        <result column="type" property="type"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="progress" property="progress"/>
+    </resultMap>
+    <select id="getAllBooks" resultMap="BaseResultMap">
+        select b.id, b.name, b.type, b.url, b.progress from book b;
+    </select>
+    <insert id="addOneBook" parameterType="com.dy.bean.Book" >
+        insert into book
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="url != null" >
+                url,
+            </if>
+            <if test="type != 0">
+                type,
+            </if>
+            <if test="progress != 0">
+                progress,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null" >
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="type != -1" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="progress != -1" >
+                #{progress,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -1,5 +1,6 @@
 package com.dy.service;
 
+import com.dy.bean.Book;
 import com.dy.bean.City;
 import com.dy.mapper.CityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
