@@ -13,5 +13,4 @@
         select c.`city_id`,c.`city_name`,c.`province_id`,c.`id` from city c, province p
         where c.`province_id`= p.`province_id` and p.`province_name` like "%"#{provinceName}"%" and c.`city_name` != '省直辖县级行政区划';
     </select>
-
 </mapper>
